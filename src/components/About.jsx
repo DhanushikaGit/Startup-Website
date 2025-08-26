@@ -84,28 +84,7 @@ export default function About() {
           ))}
         </div>
 
-        {/* Additional content */}
-        <div className={`mt-20 text-center transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="flex flex-col items-center">
-              <span className="text-4xl font-bold text-blue-600 mb-2">5+</span>
-              <span className="text-gray-600 font-medium">Years Experience</span>
-              <div className="w-12 h-1 bg-blue-600 mt-2 rounded-full"></div>
-            </div>
-            
-            <div className="flex flex-col items-center">
-              <span className="text-4xl font-bold text-purple-600 mb-2">50+</span>
-              <span className="text-gray-600 font-medium">Happy Clients</span>
-              <div className="w-12 h-1 bg-purple-600 mt-2 rounded-full"></div>
-            </div>
-            
-            <div className="flex flex-col items-center">
-              <span className="text-4xl font-bold text-green-600 mb-2">100+</span>
-              <span className="text-gray-600 font-medium">Projects Completed</span>
-              <div className="w-12 h-1 bg-green-600 mt-2 rounded-full"></div>
-            </div>
-          </div>
-        </div>
+        
 
         {/* Team highlight section */}
         <div className={`mt-16 bg-white rounded-3xl p-8 shadow-lg border border-gray-100 transition-all duration-1000 delay-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>

@@ -75,21 +75,7 @@ export default function Hero() {
                 </button>
               </div>
 
-              {/* Stats */}
-              <div className="mt-12 grid grid-cols-3 gap-8">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-gray-900">50+</div>
-                  <div className="text-sm text-gray-600">Projects delivered</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-gray-900">98%</div>
-                  <div className="text-sm text-gray-600">Client satisfaction</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-gray-900">24h</div>
-                  <div className="text-sm text-gray-600">Response time</div>
-                </div>
-              </div>
+              
             </div>
 
             {/* Features Grid */}

@@ -1,24 +1,23 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 const navItems = [
-  { id: 'home', label: 'Home' },
-  { id: 'about', label: 'About' },
-  { id: 'services', label: 'Services' },
-  { id: 'work', label: 'Work' },
-  { id: 'contact', label: 'Contact' },
+  { id: "home", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "services", label: "Services" },
+  { id: "work", label: "Work" },
+  { id: "contact", label: "Contact" },
 ];
 
 export default function Navbar({ activeId }) {
   const [open, setOpen] = useState(false);
 
-  // Link style: stable background, text changes on hover
+  // Dynamic link classes
   const linkClass = (id) =>
-    `px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-300
-     ${
-       activeId === id
-         ? 'bg-blue-600 text-white'
-         : 'bg-gray-100 text-gray-700 hover:text-blue-600'
-     }`;
+    `px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-300 ${
+      activeId === id
+        ? "bg-blue-600 text-white"
+        : "bg-gray-100 text-gray-700 hover:text-blue-600"
+    }`;
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-md border-b border-gray-200">
@@ -42,7 +41,7 @@ export default function Navbar({ activeId }) {
           onClick={() => setOpen((v) => !v)}
         >
           <span className="sr-only">Toggle menu</span>
-          <span className="text-xl">{open ? '✕' : '☰'}</span>
+          <span className="text-xl">{open ? "✕" : "☰"}</span>
         </button>
 
         {/* Desktop menu */}
@@ -52,7 +51,7 @@ export default function Navbar({ activeId }) {
               <a
                 href={`#${item.id}`}
                 className={linkClass(item.id)}
-                aria-current={activeId === item.id ? 'page' : undefined}
+                aria-current={activeId === item.id ? "page" : undefined}
               >
                 {item.label}
               </a>
@@ -64,7 +63,9 @@ export default function Navbar({ activeId }) {
       {/* Mobile menu */}
       <div
         id="mobile-menu"
-        className={`md:hidden ${open ? 'block' : 'hidden'} border-t border-gray-200 bg-gray-100`}
+        className={`md:hidden ${
+          open ? "block" : "hidden"
+        } border-t border-gray-200 bg-gray-100`}
       >
         <ul className="mx-auto max-w-6xl px-4 py-2 space-y-1">
           {navItems.map((item) => (

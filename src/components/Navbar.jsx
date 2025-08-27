@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const navItems = [
   { id: "home", label: "Home" },
@@ -8,16 +8,48 @@ const navItems = [
   { id: "contact", label: "Contact" },
 ];
 
-export default function Navbar({ activeId }) {
+export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [activeId, setActiveId] = useState("home");
 
-  // Dynamic link classes
+  // Track scroll to update active section
+  useEffect(() => {
+    const sections = navItems.map((item) => document.getElementById(item.id));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
+
+    sections.forEach((sec) => sec && observer.observe(sec));
+
+    return () => {
+      sections.forEach((sec) => sec && observer.unobserve(sec));
+    };
+  }, []);
+
   const linkClass = (id) =>
     `px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-300 ${
       activeId === id
         ? "bg-blue-600 text-white"
         : "bg-gray-100 text-gray-700 hover:text-blue-600"
     }`;
+
+  // Handle click for both desktop and mobile
+  const handleNavClick = (id) => {
+    setActiveId(id); // Manually set activeId
+    setOpen(false); // Close mobile menu
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-md border-b border-gray-200">
@@ -26,6 +58,7 @@ export default function Navbar({ activeId }) {
         <a
           href="#home"
           className="flex items-center gap-2 font-bold text-gray-900"
+          onClick={() => handleNavClick("home")}
         >
           <span className="inline-block h-8 w-8 rounded-xl bg-blue-600 text-white grid place-items-center shadow">
             ⚡
@@ -33,7 +66,7 @@ export default function Navbar({ activeId }) {
           <span>Startup</span>
         </a>
 
-        {/* Mobile menu toggle */}
+        {/* Mobile toggle */}
         <button
           className="md:hidden p-2 rounded-lg border border-gray-300 text-gray-700"
           aria-expanded={open}
@@ -52,6 +85,7 @@ export default function Navbar({ activeId }) {
                 href={`#${item.id}`}
                 className={linkClass(item.id)}
                 aria-current={activeId === item.id ? "page" : undefined}
+                onClick={() => handleNavClick(item.id)}
               >
                 {item.label}
               </a>
@@ -73,7 +107,8 @@ export default function Navbar({ activeId }) {
               <a
                 href={`#${item.id}`}
                 className={linkClass(item.id)}
-                onClick={() => setOpen(false)}
+                aria-current={activeId === item.id ? "page" : undefined}
+                onClick={() => handleNavClick(item.id)}
               >
                 {item.label}
               </a>
